@@ -25,7 +25,7 @@ resources:
       ref: refs/heads/maste
 
 extends:
-  template: pipelines/demo-basic-pipeline
+  template: pipelines/demo-basic-pipeline@pipeline_config
   parameters:
     poolName: 'demo-agent'
     poolDemands: 'Agent.Name -equals linux-agent-gcp-vm'
