@@ -4,6 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 name: $(SourceBranchName).$(Date:yyyyMMdd).$(Rev:r)
+
 trigger:
   branches:
     include:
