@@ -22,7 +22,7 @@ resources:
       type: github
       name: txabman42/azure-pipelines-configuration
       endpoint: txabman42
-      ref: refs/heads/maste
+      ref: refs/heads/master
 
 extends:
   template: pipelines/demo-basic-pipeline@pipeline_config
