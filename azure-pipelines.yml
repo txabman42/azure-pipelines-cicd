@@ -16,17 +16,16 @@ pr:
   - master
   - develop
 
-pool:
-  vmImage: 'ubuntu-latest'
+resources:
+  repositories:
+    - repository: 'pipeline_config'
+      type: github
+      name: txabman42/azure-pipelines-configuration
+      endpoint: txabman42
+      ref: refs/heads/maste
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+extends:
+  template: pipelines/demo-basic-pipeline
+  parameters:
+    poolName: 'demo-agent'
+    poolDemands: 'Agent.Name -equals linux-agent-gcp-vm'
