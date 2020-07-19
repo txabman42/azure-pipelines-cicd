@@ -29,3 +29,5 @@ extends:
   parameters:
     poolName: 'demo-agent'
     poolDemands: 'Agent.Name -equals linux-agent-gcp-vm'
+    mavenSettingsFile: $(MAVEN_SETTINGS_FILE)
+    artifactsServiceName: $(ARTIFACT_SERVICE_NAME)
