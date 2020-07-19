@@ -16,7 +16,7 @@
   <packaging>pom</packaging>
 
 	<properties>
-    <revision>0.0.2</revision>
+    <revision>0.0.1</revision>
     <java.version>11</java.version>
     <gcp.storage.wagon.version>2.1</gcp.storage.wagon.version>
   </properties>
