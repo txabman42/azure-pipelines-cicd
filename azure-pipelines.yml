@@ -24,6 +24,9 @@ resources:
       endpoint: txabman42
       ref: refs/heads/master
 
+variables:
+  - group: vg-main-connections
+
 extends:
   template: pipelines/demo-basic-pipeline.yml@pipeline_config
   parameters:
