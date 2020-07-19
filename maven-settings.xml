@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+      
+    <mirrors>
+        <mirror>
+            <id>repo1-central</id>
+            <name>Maven central mirror</name>         
+            <url>https://repo1.maven.org/maven2</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>        
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>s3</id>
+
+            <repositories>        
+                <repository>
+                    <id>az-pipelines-demo-s3.snapshots</id>
+                    <name>Demo AZ Pipelines snapshots</name>
+                    <url>s3://az-pipelines-demo-s3/snapshot</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>az-pipelines-demo-s3.releases</id>
+                    <name>Demo AZ Pipelines releases</name>
+                    <url>s3://az-pipelines-demo-s3/release</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+  
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>s3</activeProfile>
+    </activeProfiles>
+
+</settings>
