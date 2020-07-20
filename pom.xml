@@ -10,13 +10,29 @@
 	</parent>
 	<groupId>com.txabman</groupId>
 	<artifactId>azure-pipelines</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<name>azure-pipelines</name>
-	<description>Demo project to work with Azure DevOps Pipelines CI/CD</description>
+  <description>Demo project to work with Azure DevOps Pipelines CI/CD</description>
+  <packaging>pom</packaging>
 
 	<properties>
-		<java.version>11</java.version>
-	</properties>
+    <revision>0.0.1</revision>
+    <java.version>11</java.version>
+    <gcp.storage.wagon.version>2.1</gcp.storage.wagon.version>
+  </properties>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>az-pipelines-demo-s3.snapshots</id>
+      <name>Demo AZ Pipelines snapshots</name>
+      <url>s3://az-pipelines-demo-s3/snapshot</url>
+    </snapshotRepository>
+    <repository>
+      <id>az-pipelines-demo-s3.releases</id>
+      <name>Demo AZ Pipelines releases</name>
+      <url>s3://az-pipelines-demo-s3/release</url>
+    </repository>
+  </distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -43,7 +59,14 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
-	</build>
+    </plugins>
+    <extensions>
+      <extension>
+        <groupId>com.gkatzioura.maven.cloud</groupId>
+        <artifactId>s3-storage-wagon</artifactId>
+        <version>2.3</version>
+      </extension>
+    </extensions>
+  </build>
 
 </project>

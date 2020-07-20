@@ -3,20 +3,35 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+name: $(SourceBranchName).$(Date:yyyyMMdd).$(Rev:r)
+
 trigger:
-- master
+  branches:
+    include:
+      - master
+      - develop
+      - release-*
+      - hotfix-*
+pr:
+  - master
+  - develop
 
-pool:
-  vmImage: 'ubuntu-latest'
+resources:
+  repositories:
+    - repository: 'pipeline_config'
+      type: github
+      name: txabman42/azure-pipelines-configuration
+      endpoint: txabman42
+      ref: refs/heads/master
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+variables:
+  - group: vg-main-connections
+
+extends:
+  template: pipelines/demo-basic-pipeline.yml@pipeline_config
+  parameters:
+    poolName: 'demo-agent'
+    poolDemands: 'Agent.Name -equals linux-agent-gcp-vm'
+    mavenSettingsFile: $(MAVEN_SETTINGS_FILE)
+    artifactServiceName: $(ARTIFACT_SERVICE_NAME)
+    githubServiceName: $(GITHUB_SERVICE_NAME)
