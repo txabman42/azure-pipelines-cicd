@@ -34,3 +34,4 @@ extends:
     poolDemands: 'Agent.Name -equals linux-agent-gcp-vm'
     mavenSettingsFile: $(MAVEN_SETTINGS_FILE)
     artifactServiceName: $(ARTIFACT_SERVICE_NAME)
+    githubServiceName: $(GITHUB_SERVICE_NAME)
